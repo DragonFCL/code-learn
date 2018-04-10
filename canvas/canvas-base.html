@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<style>
+    .canvas {
+        background-color: #ffffff;
+    }
+</style>
+<body style="background-color: #000000;text-align: center;">
+<canvas class="canvas" id="canvas" width="800" height="600"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('canvas');
+    let gd = canvas.getContext('2d');
+
+    gd.moveTo(20, 20);
+    gd.lineTo(40, 40);
+    gd.strokeStyle = 'red';
+    gd.stroke();
+
+    gd.beginPath();  //新的路径初始化，清除之前的路径
+    gd.moveTo(60, 20);
+    gd.lineTo(80, 40);
+    gd.lineTo(60, 40);
+    gd.closePath();
+    gd.strokeStyle = 'pink';
+    gd.stroke();
+    gd.fillStyle = 'green';
+    gd.fill();
+
+    gd.beginPath();
+    gd.strokeStyle = 'blue';
+    gd.strokeRect(100, 100, 60, 40);
+    gd.fillStyle = '#530547';
+    gd.fillRect(100, 100, 60, 40);
+
+    setTimeout(() => {
+        gd.clearRect(0, 0, canvas.width, canvas.height);
+        alert('canvas擦除！')
+    }, 3000)
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<style>
+    .canvas {
+        background-color: #ffffff;
+    }
+</style>
+<body style="background-color: #000000;text-align: center;">
+<canvas class="canvas" id="canvas" width="800" height="600"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('canvas');
+    let gd = canvas.getContext('2d');
+
+    let leftValue = 0;
+    let topValue = 50;
+    let start;
+
+    let fnRunner = function (timestamp) {
+        if (!start) start = timestamp;
+        let progress = Math.floor(timestamp - start);
+
+        gd.clearRect(0, 0, canvas.width, canvas.height);
+
+        leftValue =progress/10;
+
+        gd.strokeStyle = 'red';
+        gd.strokeRect(leftValue, topValue, 60, 40);
+        if (leftValue < canvas.width - 100) {
+            requestAnimationFrame(fnRunner);
+        }
+    };
+
+    requestAnimationFrame(fnRunner);
+</script>
+</html>
